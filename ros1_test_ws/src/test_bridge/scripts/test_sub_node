@@ -1,0 +1,27 @@
+#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+import rospy
+from bridge_interfaces.msg import BridgeArray
+from bridge_interfaces_ros1.msg import BridgeArrayROS1
+
+class TestSubNode:
+    def __init__(self):
+        self.subscriber = rospy.Subscriber('bridge', BridgeArray, callback=self.sub_callback, queue_size=10)
+        self.subscriber_ros = rospy.Subscriber('bridge_ros', BridgeArrayROS1, callback=self.sub_callback_ros, queue_size=10)
+    
+    def sub_callback(self, data):
+        rospy.loginfo("Bridge callback : subsclibing message from {} clients.".format(len(data.bridge_array)))
+    
+    def sub_callback_ros(self, data):
+        rospy.loginfo("BridgeROS callback : subsclibing message from {} clients.".format(len(data.bridge_array_ros1)))
+
+def main():
+    rospy.init_node('test_sub_node', anonymous=True)
+    print('Hi from test_sub node.')
+    try:
+        TestSubNode()
+        rospy.spin()
+    except rospy.ROSInterruptException: pass
+
+if __name__ == '__main__':
+    main()

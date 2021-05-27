@@ -1,0 +1,1 @@
+bridge_interfaces_ros1/BridgeROS1[] bridge_array_ros1

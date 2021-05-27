@@ -1,0 +1,2 @@
+string client_id_ros1
+string message_ros1

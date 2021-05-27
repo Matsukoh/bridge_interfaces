@@ -1,0 +1,1 @@
+bridge_interfaces/Bridge[] bridge_array
